@@ -1,21 +1,35 @@
-extends AnimatedSprite
+extends KinematicBody2D
+
+var player_in_range = false
+export var damage = 10
+export var speed = 90
+onready var player = get_parent().get_node("Player")
+var path_to_player = null
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	follow_player()
+	move_and_slide(path_to_player * speed)
+
+
+func follow_player():
+	path_to_player = (player.global_position - global_position).normalized()
 
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
-		body.hurt(5)
+		player.hurt(damage)
+		$HurtTimer.start()
+
+func _on_Area2D_body_exited(body):
+	if body.name == "Player":
+		player_in_range = false
+		$HurtTimer.stop()
+
+
+func _on_HurtTimer_timeout():
+	player.hurt(damage)
