@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var player_in_range = false
 export var damage = 10
-export var speed = 90
+export var speed = 150
 onready var player = get_parent().get_node("Player")
 var path_to_player = null
 

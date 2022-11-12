@@ -23,7 +23,6 @@ animations = [ {
 ]]
 collision_mask = 4
 script = ExtResource( 1 )
-speed = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

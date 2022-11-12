@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 100
+export var speed = 250
 export var acceleration = 0.1
 export var friction = 0.1
 var lifepoints = 100
