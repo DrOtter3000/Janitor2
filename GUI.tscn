@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GFX/lifebar_bg.png" type="Texture" id=1]
+[ext_resource path="res://GFX/lifebar.png" type="Texture" id=2]
+[ext_resource path="res://GUI.gd" type="Script" id=3]
+
+[sub_resource type="Theme" id=1]
+
+[node name="GUI" type="Control" groups=[
+"GUI",
+]]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lifebar" type="TextureProgress" parent="."]
+margin_left = -503.885
+margin_top = -292.137
+margin_right = 8.11493
+margin_bottom = -252.137
+theme = SubResource( 1 )
+value = 75.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
