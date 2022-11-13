@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 export(PackedScene) var stomp_scene
-export var speed = 250
+export var speed = 200
 export var acceleration = 0.1
 export var friction = 0.1
 var lifepoints = 100
@@ -10,6 +10,7 @@ export var lifepoints_max = 100
 var velocity = Vector2()
 var xp = 0
 var next_level = 100
+var level = 1
 
 
 func _physics_process(delta):
@@ -34,18 +35,33 @@ func get_input():
 		input.y -= 1
 	if Input.is_action_pressed("down"):
 		input.y += 1
+	if Input.is_action_just_pressed("pause"):
+		lvl_up_options()
 	return input
 
 
 func check_for_level_up():
 	if xp >= next_level:
 		xp -= next_level
-		print(xp)	
 		level_up()
 
 
 func level_up():
-	pass
+	level += 1
+	next_level = int(next_level * 1.1)
+	lvl_up_options()
+
+
+func lvl_up_options():
+	var random_upgrade = randi() % 2
+	print(random_upgrade)
+	if random_upgrade == 0:
+		lifepoints_max += 10
+	elif random_upgrade == 1:
+		speed += 10
+	
+	
+	lifepoints = lifepoints_max
 
 
 func hurt(damage):
@@ -67,9 +83,8 @@ func add_xp(x):
 	
 
 func game_over():
+#	get_tree().change_scene("res://Menu.tscn")
 	pass
-	#TODO: add some functionality
-
 
 func drink(x):
 	lifepoints += x
@@ -88,3 +103,6 @@ func _on_StomptTimer_timeout():
 	stomp()
 
 
+func _on_BtnContinue_pressed():
+	$Popup.hide()
+	get_tree().paused = false

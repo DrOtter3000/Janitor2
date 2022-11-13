@@ -27,6 +27,8 @@ collision_mask = 6
 script = ExtResource( 1 )
 stomp_scene = ExtResource( 4 )
 
+[node name="GUI" parent="." instance=ExtResource( 3 )]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0.5, 0 )
@@ -34,12 +36,10 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-
-[node name="GUI" parent="Camera2D" instance=ExtResource( 3 )]
-margin_left = -639.091
-margin_top = -360.755
-margin_right = -639.091
-margin_bottom = -360.755
+limit_left = -60
+limit_top = -90
+limit_right = 3600
+limit_bottom = 3600
 
 [node name="HurtArea" type="Area2D" parent="."]
 

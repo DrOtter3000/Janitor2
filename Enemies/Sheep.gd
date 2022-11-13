@@ -48,7 +48,6 @@ func _on_HurtTimer_timeout():
 func die():
 	var luck = randi() % 2
 	if luck == 1:
-		print("drop")
 		drop_cola()
 	player.add_xp(xp)
 	queue_free()
