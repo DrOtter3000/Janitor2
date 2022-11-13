@@ -8,6 +8,8 @@ export var friction = 0.1
 var lifepoints = 100
 export var lifepoints_max = 100
 var velocity = Vector2()
+var xp = 0
+var next_level = 100
 
 
 func _physics_process(delta):
@@ -22,6 +24,7 @@ func _physics_process(delta):
 
 
 func get_input():
+	check_for_level_up()
 	var input = Vector2()
 	if Input.is_action_pressed("right"):
 		input.x += 1
@@ -32,6 +35,17 @@ func get_input():
 	if Input.is_action_pressed("down"):
 		input.y += 1
 	return input
+
+
+func check_for_level_up():
+	if xp >= next_level:
+		xp -= next_level
+		print(xp)	
+		level_up()
+
+
+func level_up():
+	pass
 
 
 func hurt(damage):
@@ -45,7 +59,12 @@ func check_if_alive():
 
 func update_gui():
 	get_tree().call_group("GUI", "update_lifepoints", lifepoints, lifepoints_max)
+	get_tree().call_group("GUI", "update_level", xp, next_level)
 
+
+func add_xp(x):
+	xp += x
+	
 
 func game_over():
 	pass

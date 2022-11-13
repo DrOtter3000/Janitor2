@@ -7,6 +7,7 @@ export var damage = 10
 export var lifepoints = 100
 export var speed = 150
 onready var player = get_parent().get_node("Player")
+export var xp = 15
 var path_to_player = null
 
 
@@ -49,6 +50,7 @@ func die():
 	if luck == 1:
 		print("drop")
 		drop_cola()
+	player.add_xp(xp)
 	queue_free()
 
 

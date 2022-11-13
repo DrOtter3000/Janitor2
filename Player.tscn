@@ -35,6 +35,10 @@ shape = SubResource( 1 )
 current = true
 
 [node name="GUI" parent="Camera2D" instance=ExtResource( 3 )]
+margin_left = -639.091
+margin_top = -360.755
+margin_right = -639.091
+margin_bottom = -360.755
 
 [node name="HurtArea" type="Area2D" parent="."]
 
