@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+
+export(PackedScene) var stomp_scene
 export var speed = 250
 export var acceleration = 0.1
 export var friction = 0.1
@@ -34,7 +36,6 @@ func get_input():
 
 func hurt(damage):
 	lifepoints -= damage
-	print(lifepoints)
 
 
 func check_if_alive():
@@ -47,5 +48,24 @@ func update_gui():
 
 
 func game_over():
-	print("game over")
+	pass
+	#TODO: add some functionality
+
+
+func drink(x):
+	lifepoints += x
+	if lifepoints > lifepoints_max:
+		lifepoints = lifepoints_max
+
+#WEAPONS ARE INSTANCED HERE
+
+
+func stomp():
+	var b = stomp_scene.instance()
+	add_child(b)
+
+
+func _on_StomptTimer_timeout():
+	stomp()
+
 

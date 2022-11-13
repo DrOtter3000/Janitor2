@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://GFX/Player.png" type="Texture" id=2]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Attack/Stomp.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 25.0793 )
@@ -21,8 +22,9 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-collision_mask = 4
+collision_mask = 6
 script = ExtResource( 1 )
+stomp_scene = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -41,4 +43,9 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+
+[node name="StomptTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 [connection signal="area_entered" from="HurtArea" to="." method="_on_HurtArea_area_entered"]
+[connection signal="timeout" from="StomptTimer" to="." method="_on_StomptTimer_timeout"]
