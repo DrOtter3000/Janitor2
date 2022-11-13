@@ -22,6 +22,7 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
+z_index = 5
 collision_mask = 6
 script = ExtResource( 1 )
 stomp_scene = ExtResource( 4 )
